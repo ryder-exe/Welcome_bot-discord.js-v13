@@ -10,15 +10,16 @@ module.exports = new Command ({
         const row = new Discord.MessageActionRow().addComponents(
             new Discord.MessageButton()
             .setURL("https://cdn.discordapp.com/attachments/869901546287149066/875116673655513149/wave_pre..png")
-            .setLabel("Invite")
+            .setLabel("Click")
             .setStyle("LINK")
         );
 
 
         const embed = new Discord.MessageEmbed();
         embed.setTitle("JOIN");
-        embed.setDescription("[Join Our Server.](https://gg.g)");
-        embed.setColor("#6ABB34");
+        embed.setDescription("[Click the button to redirect.](https://gg.g)");
+        embed.setColor("#2f60ff");
+        embed.setImage('https://media.discordapp.net/attachments/869901425562484736/901910186615246898/join.png');
         
     message.channel.send({embeds: [embed], components: [row]});
 

@@ -2,6 +2,7 @@
 const config = require("./config.json");
 const Client = require("./structures/Client");
 // const client  = new Client({ intents: 32767 });
+const Discord = require('discord.js');
 const Command = require("./structures/Command.js");
 const client = new Client();
 const fs = require("fs");
@@ -20,7 +21,7 @@ fs.readdirSync("./Commands")
 
 client.on("ready", () => {
     console.log("Bot is online ✔");
-    client.user.setActivity("Looking for Hope!! ")
+    client.user.setActivity("Lex Maverick's Server", {type: "WATCHING"});
 });
 
 client.on(("messageCreate"), message => {
@@ -32,9 +33,14 @@ client.on(("messageCreate"), message => {
 
     const command =  client.commands.find(cmd => cmd.name == args[0]);
 
-    if(!command) return message.reply(` **${args[0]}** is not a valid command ❌`)
+    const embed = new Discord.MessageEmbed();
+    embed.setTitle("WARNING");
+    embed.setDescription(`**${args[0]}** is not a valid command ❌`);
+    embed.setColor("RED");
 
-    command.run(message,args,client);
+    if(!command) return message.channel.send({embeds: [embed]})
+
+     command.run(message,args,client);
     
 
     // switch (args) {
